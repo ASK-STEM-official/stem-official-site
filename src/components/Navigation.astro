@@ -26,7 +26,7 @@ const NAVIGATION_ITEMS: Navigation[] = [
 ];
 ---
 
-<nav class={cn("flex gap-8 bg-white shadow-xl rounded-full p-4", className)}>
+<nav class={cn("flex gap-4 bg-white shadow-xl rounded-full p-2", className)}>
   <ul class="flex gap-2">
     {
       NAVIGATION_ITEMS.map((item) => {
@@ -35,7 +35,7 @@ const NAVIGATION_ITEMS: Navigation[] = [
         return (
           <li
             class={cn(
-              "relative px-8 py-3 transition-colors duration-500 overflow-hidden z-10",
+              "relative px-7 py-2 transition-colors duration-500 overflow-hidden z-10",
               "before:block before:w-full before:h-full before:rounded-full",
               "before:absolute before:top-0 before:left-0 before:-z-20",
               "before:bg-gradient-to-br before:from-gradient-from before:to-gradient-to",
@@ -47,9 +47,9 @@ const NAVIGATION_ITEMS: Navigation[] = [
               isActive && "text-white after:translate-x-full"
             )}
           >
-            <a class="text-xl font-bold" href={item.href}>
+            <a class="block text-lg font-bold leading-4" href={item.href}>
               {item.text.en}
-              <span class="block text-base font-normal leading-4">
+              <span class="block text-sm font-normal">
                 {item.text.ja}
               </span>
             </a>

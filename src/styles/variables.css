@@ -1,4 +1,7 @@
 @theme {
   --color-gradient-from: #1f34a8;
   --color-gradient-to: #1f88a8;
+
+  --breakpoint-tablet: 1025px;
+  --breakpoint-desktop: 1200px;
 }

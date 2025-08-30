@@ -2,17 +2,18 @@
 import { Image } from "astro:assets";
 import Logo from "../assets/images/logo.webp";
 import Navigation from "./Navigation.astro";
+import { cn } from "../lib";
 ---
 
 <header class="fixed top-0 flex items-center justify-between w-full">
-  <div class="bg-white px-8 py-4 rounded-br-3xl shadow-xl">
+  <div class="bg-white px-4 py-2 rounded-br-3xl shadow-xl">
     <a class="flex items-center gap-2" href="/">
-      <Image class="w-20 h-20" src={Logo} alt="Logo" />
-      <h1 class="text-3xl font-bold">
-        <span class="block text-sm font-normal"
+      <Image class="w-16 h-16" src={Logo} alt="Logo" />
+      <h1 class={cn("text-2xl font-bold", "max-desktop:hidden")}>
+        <span class="block text-xs font-normal"
           >愛知県立愛知総合工科高等学校</span
         >
-        <span>STEM研究部</span>
+        STEM研究部
       </h1>
     </a>
   </div>
