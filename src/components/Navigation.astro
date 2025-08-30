@@ -16,8 +16,10 @@ interface Navigation {
 
 const { class: className } = Astro.props;
 
+const currentPath = Astro.url.pathname;
+
 const NAVIGATION_ITEMS: Navigation[] = [
-  { href: "", text: { ja: "ホーム", en: "Home" } },
+  { href: "/", text: { ja: "ホーム", en: "Home" } },
   { href: "/about", text: { ja: "STEM研究部とは", en: "About" } },
   { href: "/activities", text: { ja: "活動内容", en: "Activities" } },
   { href: "/achievements", text: { ja: "大会実績", en: "Achievements" } },
@@ -25,30 +27,35 @@ const NAVIGATION_ITEMS: Navigation[] = [
 ---
 
 <nav class={cn("flex gap-8 bg-white shadow-xl rounded-full p-4", className)}>
-  <ul class="flex gap-4">
+  <ul class="flex gap-2">
     {
-      NAVIGATION_ITEMS.map((item) => (
-        <li
-          class={cn(
-            "relative px-6 py-2 transition-colors duration-500 overflow-hidden z-10",
-            "before:block before:w-full before:h-full before:rounded-full",
-            "before:absolute before:top-0 before:left-0 before:-z-20",
-            "before:bg-gradient-to-br before:from-gradient-from before:to-gradient-to",
-            "after:block after:w-[120%] after:h-full after:bg-white",
-            "after:-translate-x-[12%] after:transition-transform after:duration-500 after:ease-in-out",
-            "after:absolute after:top-0 after:left-0 after:-z-10 after:-skew-x-12",
-            "hover:text-white",
-            "hover:after:translate-x-full"
-          )}
-        >
-          <a class="text-xl font-bold" href={item.href}>
-            {item.text.en}
-            <span class="block text-base font-normal leading-4">
-              {item.text.ja}
-            </span>
-          </a>
-        </li>
-      ))
+      NAVIGATION_ITEMS.map((item) => {
+        const isActive = currentPath === item.href;
+
+        return (
+          <li
+            class={cn(
+              "relative px-8 py-3 transition-colors duration-500 overflow-hidden z-10",
+              "before:block before:w-full before:h-full before:rounded-full",
+              "before:absolute before:top-0 before:left-0 before:-z-20",
+              "before:bg-gradient-to-br before:from-gradient-from before:to-gradient-to",
+              "after:block after:w-[120%] after:h-full after:bg-white",
+              "after:-translate-x-[12%] after:transition-transform after:duration-500 after:ease-in-out",
+              "after:absolute after:top-0 after:left-0 after:-z-10 after:-skew-x-12",
+              "hover:text-white",
+              "hover:after:translate-x-full",
+              isActive && "text-white after:translate-x-full"
+            )}
+          >
+            <a class="text-xl font-bold" href={item.href}>
+              {item.text.en}
+              <span class="block text-base font-normal leading-4">
+                {item.text.ja}
+              </span>
+            </a>
+          </li>
+        );
+      })
     }
   </ul>
   <div class="flex">
