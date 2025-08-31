@@ -9,3 +9,9 @@ body {
     transparent 2px
   );
 }
+
+@media screen and (width > 1920px) {
+  html {
+    font-size: 0.8vw;
+  }
+}
