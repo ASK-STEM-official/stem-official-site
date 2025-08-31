@@ -1,0 +1,56 @@
+---
+import firstview1 from "../../../assets/images/index/firstview1.webp";
+import firstview2 from "../../../assets/images/index/firstview2.webp";
+import firstview3 from "../../../assets/images/index/firstview3.webp";
+import { cn } from "../../../lib";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const images = [firstview1, firstview2, firstview3];
+---
+
+<div
+  class={cn(
+    "slideshow-container w-5/7 h-[80dvh] min-h-[600px] ml-auto",
+    "border-b-8 border-l-8 border-white shadow-lg shadow-neutral-500 rounded-bl-3xl overflow-hidden",
+    className
+  )}
+>
+  <div class="swiper h-full">
+    <div class="swiper-wrapper">
+      {
+        images.map((image, index) => (
+          <div class="swiper-slide">
+            <img
+              class="w-full h-full rounded-bl-3xl object-cover"
+              src={image.src}
+              alt={`Slide ${index + 1}`}
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<script>
+  import Swiper from "swiper";
+  import { EffectFade, Autoplay } from "swiper/modules";
+  import "swiper/css";
+  import "swiper/css/navigation";
+  import "swiper/css/pagination";
+  import "swiper/css/effect-fade";
+
+  new Swiper(".swiper", {
+    modules: [EffectFade, Autoplay],
+    effect: "fade",
+    loop: true,
+    autoplay: {
+      delay: 4000,
+    },
+  });
+</script>
