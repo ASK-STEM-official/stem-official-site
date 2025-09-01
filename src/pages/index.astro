@@ -1,16 +1,44 @@
 ---
-
+import Layout from "../layouts/Layout.astro";
+import Slideshow from "../components/pages/index/Slideshow.astro";
+import HorizontalTextAnimation from "../components/pages/index/HorizontalTextAnimation.astro";
+import { cn } from "../lib";
+import { Image } from "astro:assets";
+import FirstViewBackgroundImage from "../assets/images/index/firstview-background.webp";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <div class="relative min-h-screen overflow-hidden">
+    <Slideshow />
+    <div class="absolute top-1/2 left-8 -translate-y-1/2 z-10">
+      <p class="text-6xl font-bold drop-shadow drop-shadow-white">
+        自分の
+        <span
+          class={cn(
+            "text-9xl align-sub -mr-8",
+            "text-transparent bg-clip-text bg-linear-90 from-gradient-from to-gradient-to"
+          )}
+        >
+          好き
+        </span>
+        を<br />
+        <span class="ml-48">好きなだけ</span>
+        <span
+          class={cn(
+            "text-9xl align-sub",
+            "text-transparent bg-clip-text bg-linear-90 from-gradient-from to-gradient-to"
+          )}
+        >
+          極める
+        </span>
+      </p>
+      <p class="table text-4xl mt-8 mx-auto bg-white shadow-lg px-8 py-4 rounded-3xl">
+				<span class="block text-lg text-neutral-600">愛知県立愛知総合工科高等学校</span>
+				STEM研究部公式サイト
+				<span class="block text-sm text-neutral-400 mt-2">Aichi Prefectural Aichi High School of T&E STEM Research Club Official Site</span>
+			</p>
+    </div>
+    <HorizontalTextAnimation />
+		<Image class="absolute bottom-0 left-0 -z-10 w-full h-full object-cover" src={FirstViewBackgroundImage} alt="background" />
+  </div>
+</Layout>

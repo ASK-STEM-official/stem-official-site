@@ -1,0 +1,23 @@
+@import "tailwindcss";
+@import "./variables.css";
+
+body {
+  background-size: 40px 40px;
+  background-image: radial-gradient(
+    circle,
+    var(--dot-color, #e5e7eb) 2px,
+    transparent 2px
+  );
+}
+
+@media screen and (width > 1920px) {
+  html {
+    font-size: 0.8vw;
+  }
+}
+
+@media screen and (width < 1025px) {
+  html {
+    font-size: 3vw;
+  }
+}
