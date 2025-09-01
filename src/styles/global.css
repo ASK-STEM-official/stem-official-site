@@ -15,3 +15,9 @@ body {
     font-size: 0.8vw;
   }
 }
+
+@media screen and (width < 1025px) {
+  html {
+    font-size: 3vw;
+  }
+}

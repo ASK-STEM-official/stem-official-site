@@ -27,50 +27,100 @@ const NAVIGATION_ITEMS: Navigation[] = [
 ];
 ---
 
-<nav class={cn("flex gap-4 bg-white shadow-xl rounded-full p-2", className)}>
-  <ul class="flex gap-2">
-    {
-      NAVIGATION_ITEMS.map((item) => {
-        const isActive = currentPath === item.href;
+<nav id="nav" class={cn("flex group", className)}>
+  <div
+    class={cn(
+      "flex gap-4 bg-white shadow-xl rounded-full p-2",
+      "max-tablet:fixed max-tablet:top-0 max-tablet:right-0 max-tablet:flex-col",
+      "max-tablet:w-full max-tablet:h-screen max-tablet:rounded-none max-tablet:opacity-0",
+      "max-tablet:transition-opacity max-tablet:duration-500 max-tablet:pointer-events-none",
+      "group-[.active]:max-tablet:opacity-100 group-[.active]:max-tablet:pointer-events-auto",
+    )}
+  >
+    <ul class={cn("flex gap-2", "max-tablet:flex-col max-tablet:pt-20")}>
+      {
+        NAVIGATION_ITEMS.map((item) => {
+          const isActive = currentPath === item.href;
 
-        return (
-          <li
-            class={cn(
-              "relative px-6 py-1 transition-colors duration-500 overflow-hidden z-10",
-              "before:block before:w-full before:h-full before:rounded-full",
-              "before:absolute before:top-0 before:left-0 before:-z-20",
-              "before:bg-gradient-to-br before:from-gradient-from before:to-gradient-to",
-              "after:block after:w-[120%] after:h-[110%] after:bg-white",
-              "after:-translate-x-[12%] after:transition-transform after:duration-500 after:ease-in-out",
-              "after:absolute after:top-0 after:left-0 after:-z-10 after:-skew-x-12",
-              "hover:text-white",
-              "hover:after:translate-x-full",
-              isActive && "text-white after:translate-x-full"
-            )}
-          >
-            <a class="block font-bold leading-6" href={item.href}>
-              {item.text.en}
-              <span class="block text-xs font-normal">
-                {item.text.ja}
-              </span>
-            </a>
-          </li>
-        );
-      })
-    }
-  </ul>
-  <div class="flex">
-    <a
-      class={cn(
-        "flex items-center text-xs bg-orange-400 text-neutral-50 rounded-full px-6",
-        "transition-all duration-500",
-        "hover:brightness-90"
-      )}
-      href="https://aichi-te.aichi-c.ed.jp/"
-      target="_blank"
-    >
-      学校公式サイト
-      <Icon name="mdi:external-link" />
-    </a>
+          return (
+            <li
+              class={cn(
+                "relative px-6 py-1 transition-colors duration-500 overflow-hidden z-10",
+                "before:block before:w-full before:h-full before:rounded-full",
+                "before:absolute before:top-0 before:left-0 before:-z-20",
+                "before:bg-gradient-to-br before:from-gradient-from before:to-gradient-to",
+                "after:block after:w-[120%] after:h-[110%] after:bg-white",
+                "after:-translate-x-[12%] after:transition-transform after:duration-500 after:ease-in-out",
+                "after:absolute after:top-0 after:left-0 after:-z-10 after:-skew-x-12",
+                "hover:text-white",
+                "hover:after:translate-x-full",
+                isActive && "text-white after:translate-x-full"
+              )}
+            >
+              <a class={cn("block font-bold leading-6", "max-tablet:text-center")} href={item.href}>
+                {item.text.en}
+                <span class="block text-xs font-normal">{item.text.ja}</span>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+    <div class={cn("hidden w-full h-px bg-neutral-200 my-4", "max-tablet:block")}></div>
+    <div class="flex">
+      <a
+        class={cn(
+          "flex items-center text-xs bg-orange-400 text-neutral-50 rounded-full px-6",
+          "transition-all duration-500",
+          "hover:brightness-90",
+          "max-tablet:inline-flex max-tablet:mx-auto max-tablet:py-4"
+        )}
+        href="https://aichi-te.aichi-c.ed.jp/"
+        target="_blank"
+      >
+        学校公式サイト
+        <Icon class="ml-1 text-sm" name="mdi:external-link" />
+      </a>
+    </div>
   </div>
+  <button
+    id="hamburger"
+    class={cn(
+      "relative hidden justify-center w-16 h-16 rounded-full bg-white shadow-xl cursor-pointer group",
+      "max-tablet:flex"
+    )}
+    type="button"
+  >
+    <span
+      class={cn(
+        "absolute top-2/7 block w-3/5 h-1 rounded-full bg-neutral-600 transition-all",
+        "group-[.active]:top-1/2 group-[.active]:rotate-45 group-[.active]:-translate-y-1/2"
+      )}
+    >
+    </span>
+    <span
+      class={cn(
+        "absolute top-1/2 block w-3/5 h-1 rounded-full bg-neutral-600 -translate-y-1/2 transition-all",
+        "group-[.active]:w-0"
+      )}
+    >
+    </span>
+    <span
+      class={cn(
+        "absolute bottom-2/7 block w-3/5 h-1 rounded-full bg-neutral-600 transition-all",
+        "group-[.active]:bottom-1/2 group-[.active]:-rotate-45 group-[.active]:translate-y-1/2"
+      )}
+    >
+    </span>
+  </button>
 </nav>
+
+<script is:inline>
+  const nav = document.getElementById("nav");
+  const hamburger = document.getElementById("hamburger");
+
+  hamburger.addEventListener("click", () => {
+    nav.classList.toggle("active");
+
+  });
+</script>
