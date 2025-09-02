@@ -1,0 +1,53 @@
+---
+import { Image } from "astro:assets";
+import Section from "../../ui/Section.astro";
+import AboutImage from "../../../assets/images/index/aboutus.webp";
+import { cn } from "../../../lib";
+---
+
+<Section>
+  <div class="flex items-center gap-4">
+    <div class="w-3/7">
+      <div class="relative">
+        <h2
+          class={cn(
+            "text-4xl font-bold leading-tight bg-clip-text text-transparent",
+            "bg-gradient-to-br from-gradient-from to-gradient-to"
+          )}
+        >
+          多種多様な活動ができる<br />STEM研究部
+        </h2>
+        <div
+          class={cn(
+            "absolute bottom-full left-0",
+            "text-neutral-600/10 text-[15rem] font-bold leading-tight whitespace-nowrap"
+          )}
+        >
+          About Us
+        </div>
+      </div>
+      <div class="grid gap-8 text-xl mt-8">
+        <p class="leading-relaxed">
+          STEM研究部は自主性を重んじ、生徒自身で目標を決めて自主的に活動する自由度の高い部活動です。
+        </p>
+        <p class="leading-relaxed">
+          Webアプリやゲーム、ロボット、AIなど、幅広い分野に取り組んでいます。
+        </p>
+      </div>
+      <div>
+        <a
+          class="table bg-orange-400 text-neutral-50 rounded-full mx-auto mt-16 px-8 py-4"
+          href="/about"
+          >STEM研究部について詳しく見る
+        </a>
+      </div>
+    </div>
+    <div class="relative w-4/7">
+      <Image
+        class="drop-shadow-xl"
+        src={AboutImage}
+        alt="Description of image"
+      />
+    </div>
+  </div>
+</Section>
